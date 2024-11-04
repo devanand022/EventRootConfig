@@ -1,5 +1,6 @@
 {
   "name": "@devorg/root-config",
+  "version": "0.0.1",
   "scripts": {
     "start": "webpack serve --port 9001 --env isLocal",
     "lint": "eslint src --ext js,ts,tsx",
