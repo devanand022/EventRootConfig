@@ -1,4 +1,6 @@
 const { merge } = require("webpack-merge");
+const path = require("path");
+const CopyPlugin = require("copy-webpack-plugin");
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
@@ -14,6 +16,14 @@ module.exports = (webpackConfigEnv, argv) => {
 
   return merge(defaultConfig, {
     // modify the webpack config however you'd like to by adding to this object
+    module: {
+      rules: [
+        {
+          test: /\.(sass|css|scss)$/,
+          use: ["style-loader", "css-loader", "sass-loader"],
+        },
+      ],
+    },
     plugins: [
       new HtmlWebpackPlugin({
         inject: false,
@@ -23,6 +33,18 @@ module.exports = (webpackConfigEnv, argv) => {
           orgName,
         },
       }),
+      new CopyPlugin({
+        patterns: [
+          {
+            from: "**/*",
+            to: "assets",
+            context: "assets/",
+          },
+        ],
+      }),
     ],
+    output: {
+      path: path.resolve(__dirname, "dist"),
+    },
   });
 };
