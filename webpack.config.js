@@ -39,9 +39,9 @@ module.exports = (webpackConfigEnv, argv) => {
             from: "**/*",
             to: "assets",
             context: "assets/",
-          }
-        ]
-      })
+          },
+        ],
+      }),
     ],
     output: {
       path: path.resolve(__dirname, "dist"),
