@@ -2,7 +2,12 @@
   "extends": "ts-config-single-spa",
   "files": ["src/devorg-root-config.ts"],
   "compilerOptions": {
-    "declarationDir": "dist"
+    "declarationDir": "dist",
+    "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "target": "ES2020",    
   },
   "include": ["src/**/*"],
   "exclude": ["src/**/*.test*"]
