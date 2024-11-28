@@ -1,6 +1,6 @@
 {
   "imports": {
     "@devorg/root-config": "/devorg-root-config.js",
-    "@devorg/eventlogin": "http://localhost:8081/devorg-eventlogin.js"
+    "@devorg/eventlogin": "https://eventlogin-dev.pages.dev/devorg-eventlogin.js"
   }
 }
