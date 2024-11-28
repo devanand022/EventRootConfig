@@ -1,8 +1,9 @@
+/* eslint-disable no-undef */
 const { merge } = require("webpack-merge");
 const path = require("path");
-const CopyPlugin = require("copy-webpack-plugin");
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = (webpackConfigEnv, argv) => {
   const orgName = "devorg";
@@ -43,6 +44,16 @@ module.exports = (webpackConfigEnv, argv) => {
         ],
       }),
     ],
+    devServer: {
+      port: "9001",
+      server: "https",
+      client: {
+        overlay: {
+          warnings: false,
+          errors: false,
+        },
+      },
+    },
     output: {
       path: path.resolve(__dirname, "dist"),
     },
