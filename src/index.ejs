@@ -16,7 +16,11 @@
     var host = window.location.hostname;
     var runtime_env;
     if(host.includes('localhost')){
+      runtime_env = "local";
+    } else if(host.includes('eventrootconfig-dev')){
       runtime_env = "dev";
+    } else if(host.includes('eventrootconfig')){
+      runtime_env = "prod";
     }
   </script>
   <!--
