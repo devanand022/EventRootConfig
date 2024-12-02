@@ -27,7 +27,7 @@
       checkoutSSPA.isProdEnv = false;
       checkoutSSPA.isLocalEnv = true;
     } else if(host.includes('eventrootconfig-dev')){
-      checkoutSSPA.runtimeEnvironment = "deva"
+      checkoutSSPA.runtimeEnvironment = "dev"
       checkoutSSPA.isProdEnv = false;
     } else if(host.includes('eventrootconfig')){
       checkoutSSPA.runtimeEnvironment = "prod"
@@ -81,9 +81,6 @@
 
 </head>
 <body>
-  <noscript>
-    You need to enable JavaScript to run this app.
-  </noscript>
   <script>
     System.import('@devorg/root-config');
   </script>
