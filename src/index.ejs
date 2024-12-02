@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Root Config</title>
+  <title>Root</title>
 
   <!--
     Remove this if you only support browsers that support async/await.
@@ -13,14 +13,24 @@
   -->
   <script src="https://cdn.jsdelivr.net/npm/regenerator-runtime@0.13.7/runtime.min.js"></script>
   <script>
+    var checkoutSSPA = {
+      runtimeEnvironment: "prod",
+      isProdEnv: true,
+      isLocalEnv: false,
+      appContext: {
+        channel: "",
+      },
+    };
     var host = window.location.hostname;
-    var runtime_env;
     if(host.includes('localhost')){
-      runtime_env = "local";
+      checkoutSSPA.runtimeEnvironment = "local";
+      checkoutSSPA.isProdEnv = false;
+      checkoutSSPA.isLocalEnv = true;
     } else if(host.includes('eventrootconfig-dev')){
-      runtime_env = "dev";
+      checkoutSSPA.runtimeEnvironment = "deva"
+      checkoutSSPA.isProdEnv = false;
     } else if(host.includes('eventrootconfig')){
-      runtime_env = "prod";
+      checkoutSSPA.runtimeEnvironment = "prod"
     }
   </script>
   <!--
@@ -33,14 +43,6 @@
   <!-- More info at https://github.com/joeldenning/import-map-overrides/blob/master/docs/configuration.md#domain-list -->
   <!-- <meta name="import-map-overrides-domains" content="denylist:prod.example.com" /> -->
 
-  <!-- Shared dependencies go into this import map. Your shared dependencies must be of one of the following formats:
-
-    1. System.register (preferred when possible) - https://github.com/systemjs/systemjs/blob/master/docs/system-register.md
-    2. UMD - https://github.com/umdjs/umd
-    3. Global variable
-
-    More information about shared dependencies can be found at https://single-spa.js.org/docs/recommended-setup#sharing-with-import-maps.
-  -->
   <script type="systemjs-importmap">
     {
       "imports": {
@@ -54,19 +56,19 @@
   </script>
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js" as="script">
 
-  <!-- Add your organization's prod import map URL to this script's src  -->
   <script>
     const importMapScript = document.createElement('script');
     importMapScript.type = 'systemjs-importmap';
-    importMapScript.src = `assets/importmaps/importmap.${runtime_env}.json`;
+    importMapScript.src = `assets/importmaps/importmap.${checkoutSSPA.runtimeEnvironment}.json`;
     document.head.appendChild(importMapScript);
   </script>
 
-  <!--
-    If you need to support Angular applications, uncomment the script tag below to ensure only one instance of ZoneJS is loaded
-    Learn more about why at https://single-spa.js.org/docs/ecosystem-angular/#zonejs
-  -->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/zone.js@0.11.3/dist/zone.min.js"></script> -->
+  <script>
+    const resetStyle = document.createElement('link');
+    resetStyle.rel = 'stylesheet';
+    resetStyle.href = checkoutSSPA.isLocalEnv ? "../assets/styles/reset.css" : "assets/styles/reset.css";
+    document.head.appendChild(resetStyle);
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
   <% if (isLocal) { %>
